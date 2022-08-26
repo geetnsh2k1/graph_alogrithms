@@ -29,22 +29,21 @@ int sol(int n, vector<vector<int>> &edges) {
         if(!visited[i]) build(graph, visited, s, i);
     }  
     
-    vector<vector<int>> graph2;
+    vector<vector<int>> graph2(n);
     for(auto edge: edges) {
-        cout << edge[1] << " " << edge[0] << endl;
         graph2[edge[1]].push_back(edge[0]);
     }
-    cout << "hi";
+    
     int ct = 0;
-    visited.resize(n, false);
+    for(int i=0; i<n; i++) visited[i] = false;
     while(!s.empty()) {
-        cout << s.top() << " ";
         if(!visited[s.top()]) {
             dfs(graph2, visited, s.top());
             ct += 1;
         }
         s.pop();
     }
+    return ct;
     
 }
 int main()
